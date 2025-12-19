@@ -1,0 +1,445 @@
+:root{
+    --base-color: white;
+    --base-variant: #e8e9ed;
+    --text-color: #111528; 
+    --secondary-text: #232738;
+    --primary-color: #3a435d; /* 6-digit hex */
+    --accent-color: #0071ff;
+    --secondary-accent-color: #FF3131;
+    --container-color: #6b3c89;
+    --container-accent-color: #29bbbc;
+}
+.darkmode{
+    --base-color: #070b1d;
+    --base-variant: #101425;
+    --text-color: white; 
+    --secondary-text: #a4a5b8;
+    --primary-color: #3a435d;
+    --accent-color: #0071ff;
+    --secondary-accent-color: #FF3131;
+    --container-color: #453c89;
+    --container-accent-color: #3c8089;
+}
+#theme-switch{
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: var(--base-variant);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#theme-switch svg{
+    fill: var(--primary-color);
+}
+#theme-switch svg:last-child{
+    display: none;
+}
+.darkmode #theme-switch svg:first-child{
+    display: none;
+}
+.darkmode #theme-switch svg:last-child{
+    display:block;
+}
+
+body{
+    background-color: var(--base-color);
+}
+
+.header_class{
+    background-color: var(--base-variant);
+    padding: 1%;
+}
+
+#settings{
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: var(--base-variant);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top_header {
+  position: relative;
+  display: flex;
+  justify-content: center;  /* centers h1 horizontally */
+  align-items: center;
+  height: 80px;              /* optional: control header height */
+  padding: 0 20px;
+}
+
+.top_header h1 {
+  color: var(--text-color);
+  text-align: center;
+  margin: 0;
+  padding: 2%;
+  font-size: 2rem;
+  font-size: 400%;
+}
+
+/* icon_buttons placed top-right, outside h1's influence */
+.icon_buttons {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 20px;
+}
+
+
+/* Right spacer matches icon_buttons width for perfect centering */
+.right-spacer {
+  width: calc(2 * 24px + 20px); /* 2 icons (24px each) + 20px gap */
+}
+
+#hr {
+    height: 2px;
+    border: none;
+    background-color: var(--accent-color);
+    margin: 20px 0;
+}
+
+.navigation {
+  display: flex; /* Enables horizontal layout using Flexbox */
+  gap: 1.5rem; 
+  align-items: center; /* Vertically centers items inside the flex container */
+  padding: 0;
+  margin: 0;
+}
+
+.nav_links {
+  list-style: none;  /* Removes bullet points from the list items */
+  display: flex;   /* Displays <li> items side by side horizontally */
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.nav_links li a {
+  text-decoration: none; /* Removes underlines from links */
+  color: var(--text-color); 
+  padding: 0.5em 1em;
+}
+
+/*  when current page is active */
+.nav_links li a.active {
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 4px;
+}
+
+.header-tray {
+  display: flex;  /* Enables horizontal layout for items like the email button */
+  align-items: center;  /* Vertically aligns items in the center */
+  gap: 1.5rem; 
+  padding: 0;
+  margin-top: -40px; /* adjust to match nav height */
+  justify-content: flex-end;  /* Aligns contents to the right of the container */
+}
+
+#cta {
+  text-decoration: none;   /* Removes underline from link */
+  color: var(--accent-color);
+  font-weight: bold;
+  padding: 0.5em 1em;
+  border: 2px solid var(--accent-color);
+  border-radius: 6px;
+  display: inline-block;
+  cursor: pointer;  /* Changes cursor to pointer on hover */
+  transition: background-color 0.3s ease; /* Adds smooth color transition effect on hover */
+}
+
+/*  when mouse hover of element */
+#cta:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+footer {
+  background-color: var(--base-variant);
+  text-align: center; /* center line content */
+  padding: 1rem; /* space in footer */
+}
+
+/* Footer nav container */
+.footer_nav {
+  display: flex; /* flexbox */
+  justify-content: center; /* horizotal centre */
+  margin-bottom: 1rem; 
+}
+
+/* Horizontal nav links */
+.footer_links {
+  display: flex; /*  Displays the <li> elements in a row (horizontally) */
+  list-style: none;  /*  removes bulletpoints */
+  gap: 2rem;
+  padding: 0;
+  margin: 0;
+}
+
+/* Individual link styles */
+.footer_links li a {
+  text-decoration: none;  /*  removes underline from links */
+  color: var(--accent-color); 
+  font-weight: bold; 
+  transition: color 0.3s ease;  /*  Smoothly animates the color change on hover */
+}
+
+/*  when mouse hover of element */
+.footer_links li a:hover {
+  color: white; 
+  background-color: var(--accent-color);
+  border-radius: 5px;
+  padding: 0.25rem 0.75rem;
+}
+
+/* GitHub link styling */
+.footer_link {
+  text-decoration: none; /*  removes underline from links */
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+.footer_link:hover {
+  text-decoration: underline; /*  adds underline */
+}
+
+#copyright {
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* At least fill the screen height */
+}
+
+main {
+  flex: 1; /* Pushes the footer to the bottom if there's not enough content */
+}
+
+h1{
+  color: var(--text-color);
+}
+
+.social-icon {
+  height: 100px;
+  width: 100px;
+}
+
+.social_banner caption {
+  display: flex;
+  justify-content: center;
+}
+
+.social_banner {
+  /* Remove fixed height */
+  margin: 2rem auto;
+  width: 300px;
+  background-color: var(--container-accent-color);
+  color: var(--text-color);
+  border-radius: 10px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-size: x-large;
+}
+
+.social_banner caption {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+  caption-side: top;
+}
+
+.social_banner td {
+  padding: 1rem;
+  text-align: center;
+}
+
+.social-icon {
+  width: 100px;
+  height: 150px;
+  object-fit: contain;
+}
+
+.social_banner .social-links {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.social_banner .social-links:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+.underconstruction-animation {
+  height: 80vh;     /* 80% of the viewport height */
+  width: auto;      /* Maintain aspect ratio */
+  display: block;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.construction-warning{
+  font-weight: bold;
+  color: var(--secondary-accent-color);
+  display: flex;
+  justify-content: center;
+}
+
+.posts_unavailable {
+ color: blue;
+}
+
+.posts-container {
+  background-color: var(--container-color);
+  width: 95vw; /* 90% of the viewport width */
+  margin : 0 auto; /* Center the container */
+  border-radius: 8px;
+  padding-top: 1px;
+  padding-bottom: 15px;
+}
+
+.posts-container h3 {
+  color: var(--text-color);
+  padding-left: 25px;
+  font-size: xx-large;
+}
+
+.posts-container .total-posts {
+  color: var(--text-color);
+  padding-left: 25px;
+  font-size: large;
+}
+
+.post {
+  background-color: var(--container-accent-color);
+  color: var(--text-color);              /* for contrast */
+  padding: 1rem;             /* give it space inside */
+  border-radius: 8px;        /* optional rounded corners */
+  margin-bottom: 1rem;
+  width: 95%;
+  margin: 0 auto;
+  margin-bottom: 25px;
+}
+
+.content {
+  background-color: var(--base-color);
+  color: var(--secondary-text);
+  padding: 1rem;             /* give it space inside */
+  border-radius: 8px;        /* optional rounded corners */
+  margin-bottom: 1rem;
+}
+
+.post h4 {
+  font-size: x-large;
+  font-weight: normal;
+}
+
+.posts .content {
+  font-size: medium;
+  line-height: 1.6; /* Improves readability */
+}
+
+.manage_posts-p {
+  color: var(--text-color);
+}
+
+.manage_container {
+  background-color: #dfefee;
+  color: black;
+  width: 95vw; /* 90% of the viewport width */
+  margin : 0 auto; /* Center the container */
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  padding: 10px;
+  border-color: red;
+  border-width: 4px;
+  border-style: solid;
+}
+
+#create_post_container {
+  margin: 5px;
+}
+
+#post_create_topFormatting
+{
+    display: grid;
+    grid-template-columns: 15% auto;
+    grid-template-rows: auto auto auto auto auto;
+    grid-template-areas:
+        "lblTitle      post-title"
+        "lblAuthor     post-author"
+        "lblDesc       post-description"
+        "lblContent    post-content"
+        "lblFile       file-upload";
+    margin: 0;
+}
+
+#lblTitle{grid-area: lblTitle;}
+
+#post-title{grid-area: post-title;}
+
+#lblAuthor{grid-area: lblAuthor;}
+
+#post-author{grid-area: post-author;}
+
+#lblDesc{grid-area: lblDesc;}
+
+#post-description{grid-area: post-description;}
+
+#lblContent{grid-area: lblContent;}
+
+#post-content{grid-area: post-content;}
+
+#lblFile{grid-area: lblFile;}
+
+#file-upload{grid-area: file-upload;}
+
+
+#post-title, #post-author, #post-description, #post-content, #file-upload {
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#tagSection {
+  background-color: plum;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+  background-color: #c8dedc;
+  border: solid 1px black;
+}
+
+#buttonsGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0;
+}
