@@ -1,9 +1,15 @@
 <?php 
     include('database.php');
 
-    $sql = "";
+    // $sql = "";
 
-    mysqli_close($conn);
+    // try {
+    //     mysqli_query($conn, $sql);
+    // } catch (mysqli_sql_exception) {
+    //     echo "could not execute query. <br>";
+    // }
+    
+    // mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +45,7 @@
             <div class="manage_container" id="createPost_containerID">
                 <div id="create_post_container">
                     <!-- <form id="create_post_form" action="Manage_posts.php" method="post" enctype="multipart/form-data"> CHECK if this is the correct address way -->
-                    <form id="create_post_form" action="create_post.php" method="post" enctype="multipart/form-data">
+                    <form id="create_post_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
                         <div id="post_create_topFormatting">                    <!--Post title -->
                             <label id="lblTitle" for="post-title">Post Title:</label>
                             <input type="text" id="post-title" name="post-title">
@@ -118,3 +124,25 @@
 </body>
 
 </html>
+
+<?php 
+
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+        $postTitle = filter_input(INPUT_POST, "post-title", FILTER_SANITIZE_SPECIAL_CHARS);
+        $postAuthor = filter_input(INPUT_POST, "post-author", FILTER_SANITIZE_SPECIAL_CHARS);
+        $postDescription = filter_input(INPUT_POST, "post-description", FILTER_SANITIZE_SPECIAL_CHARS);
+        $postContent = filter_input(INPUT_POST, "post-content", FILTER_SANITIZE_SPECIAL_CHARS);
+        $tagCategories = filter_input(INPUT_POST, "tagCategories", FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
+        $fileUpload = $_FILES["file-upload"];
+
+        $sqlposts = "INSERT INTO posts (title, author, description, content) VALUES ('$postTitle', '$postAuthor', '$postDescription', '$postContent')";
+        $sqlpost_images = ""; // TODO: Handle file uploads and insert into post_images table
+        $sqlpost_categories = ""; // TODO: Handle post categories insertion
+
+        $sql = "{$sqlposts}; {$sqlpost_images}; {$sqlpost_categories}";
+
+        mysqli_query($conn, $sql);
+    }
+
+    mysqli_close($conn);
+?> 
