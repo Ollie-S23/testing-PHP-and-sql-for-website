@@ -136,8 +136,8 @@
         $fileUpload = $_FILES["file-upload"];
 
         $sqlposts = "INSERT INTO posts (title, author, description, content) VALUES ('$postTitle', '$postAuthor', '$postDescription', '$postContent')";
-        $sqlpost_images = ""; // TODO: Handle file uploads and insert into post_images table
-        $sqlpost_categories = ""; // TODO: Handle post categories insertion
+        // $sqlpost_images = ""; // TODO: Handle file uploads and insert into post_images table
+        // $sqlpost_categories = ""; // TODO: Handle post categories insertion
 
         $sql = "{$sqlposts}; {$sqlpost_images}; {$sqlpost_categories}";
 
