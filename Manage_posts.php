@@ -141,7 +141,13 @@
 
         $sql = "{$sqlposts}; {$sqlpost_images}; {$sqlpost_categories}";
 
-        mysqli_query($conn, $sql);
+        try { 
+            mysqli_query($conn, $sql);
+            echo "Post created successfully.";
+        }
+        catch (mysqli_sql_exception) {
+            echo "That title is taken";
+        }
     }
 
     mysqli_close($conn);
