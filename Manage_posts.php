@@ -1,5 +1,15 @@
 <?php 
     include('database.php');
+
+    // $sql = "";
+
+    // try {
+    //     mysqli_query($conn, $sql);
+    // } catch (mysqli_sql_exception) {
+    //     echo "could not execute query. <br>";
+    // }
+    
+    // mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -117,7 +127,7 @@
 
 <?php 
 
-    if($_SERVER["REQUEST_METHOD"] == "POST") { 
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
         $postTitle = filter_input(INPUT_POST, "post-title", FILTER_SANITIZE_SPECIAL_CHARS);
         $postAuthor = filter_input(INPUT_POST, "post-author", FILTER_SANITIZE_SPECIAL_CHARS);
         $postDescription = filter_input(INPUT_POST, "post-description", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -125,21 +135,14 @@
         $tagCategories = filter_input(INPUT_POST, "tagCategories", FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
         $fileUpload = $_FILES["file-upload"];
 
-        // Insert post into posts table
-        $sqlposts = "INSERT INTO posts (title, author, description, content) 
-        VALUES ('$postTitle', '$postAuthor', '$postDescription', '$postContent')";
-
-        try {
-            mysqli_query($conn, $sqlposts);
-        } catch (mysqli_sql_exception) {
-            echo "That title is taken";
-        }
-
+        $sqlposts = "INSERT INTO posts (title, author, description, content) VALUES ('$postTitle', '$postAuthor', '$postDescription', '$postContent')";
         $sqlpost_images = ""; // TODO: Handle file uploads and insert into post_images table
-    //     $sqlpost_categories = ""; // TODO: Handle post categories insertion
+        $sqlpost_categories = ""; // TODO: Handle post categories insertion
+
+        $sql = "{$sqlposts}; {$sqlpost_images}; {$sqlpost_categories}";
+
+        mysqli_query($conn, $sql);
     }
 
     mysqli_close($conn);
-
-    
 ?> 
