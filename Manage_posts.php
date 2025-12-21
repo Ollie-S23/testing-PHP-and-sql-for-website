@@ -143,10 +143,13 @@
 
         try { 
             mysqli_query($conn, $sql);
-            echo "Post created successfully.";
+            // echo "Post created successfully.";
+            echo "<script type='text/javascript'>alert(\"Post created successfully.\");</script>";
         }
         catch (mysqli_sql_exception $e) {
-            echo  $e->getMessage();
+            // echo  $e->getMessage();
+            // echo "<script type='text/javascript'>alert(\"Error creating post: " . $e->getMessage() . "\");</script>";
+            echo "<script type='text/javascript'>alert(\"That title is already taken.\");</script>";
         }
     }
 
