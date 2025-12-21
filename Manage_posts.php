@@ -145,8 +145,8 @@
             mysqli_query($conn, $sql);
             echo "Post created successfully.";
         }
-        catch (mysqli_sql_exception) {
-            echo "That title is taken";
+        catch (mysqli_sql_exception $e) {
+            echo  $e->getMessage();
         }
     }
 
