@@ -139,7 +139,7 @@
         // $sqlpost_images = ""; // TODO: Handle file uploads and insert into post_images table
         // $sqlpost_categories = ""; // TODO: Handle post categories insertion
 
-        $sql = "{$sqlposts}; {$sqlpost_images}; {$sqlpost_categories}";
+        // $sql = "{$sqlposts}; {$sqlpost_images}; {$sqlpost_categories}";
 
         try { 
             mysqli_query($conn, $sql);
