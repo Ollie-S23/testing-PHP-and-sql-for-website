@@ -145,6 +145,16 @@
             mysqli_query($conn, $sql);
             // echo "Post created successfully.";
             echo "<script type='text/javascript'>alert(\"Post created successfully.\");</script>";
+
+            // //get the id of the inserted post
+            // $sqlGetPostID = "SELECT id FROM posts WHERE title = '$postTitle'"; 
+            // mysqli_query($conn, $sqlGetPostID); 
+
+            // // Insert images into post_images table
+            // $sqlPost_images = "INSERT INTO post_images (post_id, image_path, ) VALUES ('$sqlGetPostID', '$fileUpload')"; 
+
+            //  // Prepared statement for inserting images 
+            // $stmt = mysqli_prepare($conn, $sqlPost_images);
         }
         catch (mysqli_sql_exception $e) {
             // echo  $e->getMessage();
