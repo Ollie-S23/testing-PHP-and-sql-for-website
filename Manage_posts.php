@@ -142,19 +142,20 @@
         // $sql = "{$sqlposts}; {$sqlpost_images}; {$sqlpost_categories}";
 
         try { 
-            mysqli_query($conn, $sql);
+            mysqli_query($conn, $sqlposts);
             // echo "Post created successfully.";
             echo "<script type='text/javascript'>alert(\"Post created successfully.\");</script>";
 
-            // //get the id of the inserted post
-            // $sqlGetPostID = "SELECT id FROM posts WHERE title = '$postTitle'"; 
-            // mysqli_query($conn, $sqlGetPostID); 
+            $sqlPostID = "SELECT id FROM posts WHERE title = '$postTitle'";
+            $result = mysqli_query($conn, $sqlPostID);
 
-            // // Insert images into post_images table
-            // $sqlPost_images = "INSERT INTO post_images (post_id, image_path, ) VALUES ('$sqlGetPostID', '$fileUpload')"; 
-
-            //  // Prepared statement for inserting images 
-            // $stmt = mysqli_prepare($conn, $sqlPost_images);
+            if (mysqli_num_rows ($result) > 0) {
+                $row = mysqli_fetch_assoc($result);
+                echo "<script type='text/javascript'>alert(\"$row[id]\");</script>";
+            }
+            else {
+                echo "<script type='text/javascript'>alert(\"No post found with that id.\");</script>";
+            }
         }
         catch (mysqli_sql_exception $e) {
             // echo  $e->getMessage();
