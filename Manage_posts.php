@@ -152,10 +152,21 @@
             if (mysqli_num_rows ($result) > 0) {
                 $row = mysqli_fetch_assoc($result);
                 echo "<script type='text/javascript'>alert(\"$row[id]\");</script>";
+
+                $sqlpost_images = "INSERT INTO post_images (post_id, image_path) VALUES ('$row[id]', '$fileUpload')";
+
+                try {
+                    mysqli_query($conn, $sqlpost_images);
+                    echo "<script type='text/javascript'>alert(\"Images uploaded successfully.\");</script>";
+                    
+                } catch (mysqli_sql_exception $e) {
+                    echo "<script type='text/javascript'>alert(\"Having difficulties connecting to database\");</script>";
+                }
             }
             else {
                 echo "<script type='text/javascript'>alert(\"No post found with that id.\");</script>";
             }
+
         }
         catch (mysqli_sql_exception $e) {
             // echo  $e->getMessage();
