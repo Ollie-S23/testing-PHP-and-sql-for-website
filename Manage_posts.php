@@ -137,10 +137,6 @@
         //$fileUpload = filter_input(INPUT_POST, "file-upload", FILTER_SANITIZE_SPECIAL_CHARS);
 
         $sqlposts = "INSERT INTO posts (title, author, description, content) VALUES ('$postTitle', '$postAuthor', '$postDescription', '$postContent')";
-        // $sqlpost_images = ""; // TODO: Handle file uploads and insert into post_images table
-        // $sqlpost_categories = ""; // TODO: Handle post categories insertion
-
-        // $sql = "{$sqlposts}; {$sqlpost_images}; {$sqlpost_categories}";
 
         try { 
             mysqli_query($conn, $sqlposts);
@@ -154,14 +150,25 @@
                 $row = mysqli_fetch_assoc($result);
                 echo "<script type='text/javascript'>alert(\"$row[id]\");</script>";
 
-                $sqlpost_images = "INSERT INTO post_images (post_id, image_path) VALUES ('$row[id]', '$fileUpload')";
+                if(isset($_FILES['file-upload'])) {
+                    $fileCount = count($_FILES["file-upload"]["name"]);
 
-                try {
-                    mysqli_query($conn, $sqlpost_images);
-                    echo "<script type='text/javascript'>alert(\"Images uploaded successfully.\");</script>";
-                    
-                } catch (mysqli_sql_exception $e) {
-                    echo "<script type='text/javascript'>alert(\"Having difficulties connecting to database\");</script>";
+                    for ($i = 0; $i < $fileCount; $i++) {
+                        //Read tje image file content into a string
+                        $image_data = file_get_contents($_FILES["file-upload"]["tmp_name"][$i]);
+                        //Encode the image data into base64 string
+                        $base64_image = base64_encode($image_data);
+
+                        $sqlpost_images = "INSERT INTO post_images (post_id, image_path) VALUES ('$row[id]', '$base64_image')";
+
+                        try {
+                            mysqli_query($conn, $sqlpost_images);
+                            echo "<script type='text/javascript'>alert(\"Images uploaded successfully.\");</script>";
+                            
+                        } catch (mysqli_sql_exception $e) {
+                            echo "<script type='text/javascript'>alert(\"Having difficulties connecting to database\");</script>";
+                        }
+                    }
                 }
             }
             else {
