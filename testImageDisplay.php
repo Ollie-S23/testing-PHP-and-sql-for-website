@@ -9,6 +9,8 @@
 </head>
 <body>
 
+        <img id="Post image">
+
     <?php
         include('database.php');
 
@@ -21,7 +23,10 @@
 
             echo $row['image_path']; //displays base64 string
 
-            
+            // convert string back to image
+            $imageData = base64_decode($row['image_path']);
+            // display image
+            echo '<img src="data:image/jpeg;base64,' . base64_encode($imageData) . '" id="Image">';
 
         } catch (mysqli_sql_exception) {
             echo "could not execute query. <br>";

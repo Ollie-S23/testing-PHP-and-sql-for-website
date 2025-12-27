@@ -133,8 +133,6 @@
         $postDescription = filter_input(INPUT_POST, "post-description", FILTER_SANITIZE_SPECIAL_CHARS);
         $postContent = filter_input(INPUT_POST, "post-content", FILTER_SANITIZE_SPECIAL_CHARS);
         $tagCategories = filter_input(INPUT_POST, "tagCategories", FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
-        // $fileUpload = $_FILES["file-upload"]; //currently displays "array"
-        //$fileUpload = filter_input(INPUT_POST, "file-upload", FILTER_SANITIZE_SPECIAL_CHARS);
 
         $sqlposts = "INSERT INTO posts (title, author, description, content) VALUES ('$postTitle', '$postAuthor', '$postDescription', '$postContent')";
 
@@ -176,8 +174,6 @@
             }
         }
         catch (mysqli_sql_exception $e) {
-            // echo  $e->getMessage();
-            // echo "<script type='text/javascript'>alert(\"Error creating post: " . $e->getMessage() . "\");</script>";
             echo "<script type='text/javascript'>alert(\"That title is already taken.\");</script>";
         }
     }
