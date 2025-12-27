@@ -154,30 +154,12 @@
                 $row = mysqli_fetch_assoc($result);
                 echo "<script type='text/javascript'>alert(\"$row[id]\");</script>";
 
-
-                // Handle file uploads
-                foreach ($_FILES["file-upload"]["tmp_name"] as $index => $tmpPath) {
-                    if ($_FILES["file-upload"]["error"][$index] === UPLOAD_ERR_OK) {
-                        $filename = $_FILES["file-upload"]["name"][$index];
-                        $fileType = $_FILES["file-upload"]["type"][$index];
-                        $fileData = file_get_contents($tmpPath);
-                        //Convert to base64
-                        $base64Data = base64_encode($fileData);
-                        //Insert into database
-                        $sqlpost_images = "INSERT INTO post_images (post_id, image_blob) VALUES (?, ?)";
-
-                        $stmt = mysqli_prepare($conn, $sqlpost_images);
-                        mysqli_stmt_bind_param($stmt, "is", $row['id'], $base64Blob);
-                        mysqli_stmt_execute($stmt);
-                    }
-                }
-
-                // $sqlpost_images = "INSERT INTO post_images (post_id, image_path) VALUES ('$row[id]', '$fileUpload')";
+                $sqlpost_images = "INSERT INTO post_images (post_id, image_path) VALUES ('$row[id]', '$fileUpload')";
 
                 try {
                     mysqli_query($conn, $sqlpost_images);
                     echo "<script type='text/javascript'>alert(\"Images uploaded successfully.\");</script>";
-
+                    
                 } catch (mysqli_sql_exception $e) {
                     echo "<script type='text/javascript'>alert(\"Having difficulties connecting to database\");</script>";
                 }
@@ -185,7 +167,6 @@
             else {
                 echo "<script type='text/javascript'>alert(\"No post found with that id.\");</script>";
             }
-
         }
         catch (mysqli_sql_exception $e) {
             // echo  $e->getMessage();
