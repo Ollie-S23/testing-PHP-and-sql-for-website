@@ -18,7 +18,7 @@
             $sql = "SELECT image_path FROM post_images WHERE id = 9";
             $result = mysqli_query($conn, $sql); //execute query
 
-            //det actual daata from result
+            //get actual data from result
             $row = mysqli_fetch_assoc($result);
 
             echo $row['image_path']; //displays base64 string

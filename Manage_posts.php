@@ -152,7 +152,7 @@
                     $fileCount = count($_FILES["file-upload"]["name"]);
 
                     for ($i = 0; $i < $fileCount; $i++) {
-                        //Read tje image file content into a string
+                        //Read the image file content into a string
                         $image_data = file_get_contents($_FILES["file-upload"]["tmp_name"][$i]);
                         //Encode the image data into base64 string
                         $base64_image = base64_encode($image_data);
@@ -172,6 +172,17 @@
             else {
                 echo "<script type='text/javascript'>alert(\"No post found with that id.\");</script>";
             }
+
+            // Insert tags
+            foreach ($tagCategories as $tag) {
+                $sqltag = "INSERT INTO post_categories (post_id, category) VALUES ('$row[id]', '$tag')";
+                try { 
+                    mysqli_query($conn, $sqltag);
+                } catch (mysqli_sql_exception $e) {
+                    echo "failed to insert tag.";
+                }
+            }
+
         }
         catch (mysqli_sql_exception $e) {
             echo "<script type='text/javascript'>alert(\"That title is already taken.\");</script>";
