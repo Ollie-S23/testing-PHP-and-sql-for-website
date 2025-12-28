@@ -24,7 +24,7 @@
                     " - Description: " . $row['description'] . 
                     " - Author: " . $row['author'] .
                     " - Content: " . $row['content'] .
-                    " - Created At: " . $row['created_at'] .
+                    " - Created At: " . $row['created_at'];
                     $sqlCheckUpdate = "SELECT updated_at FROM posts WHERE id = " . $row['id'];
                     $updateResult = mysqli_query($conn, $sqlCheckUpdate);
                     $date = mysqli_fetch_assoc($updateResult);
